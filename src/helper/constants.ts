@@ -32,23 +32,3 @@ export type RootState = {
 export {
     getApi
 }
-
-
-// type RocketItem = {
-//     name: String;
-//     type: String;
-//     crew_capacity: Number;
-//     first_flight: String;
-//     orbit_duration_yr: Number;
-//     height_w_trunk: {
-//         meters: Number;
-//     };
-//     diameter: {
-//         metres: Number;
-//     };
-// }
-
-// interface Props {
-//     closeModal: () => void;
-//     data: RocketItem[]
-// }

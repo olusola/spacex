@@ -9,12 +9,12 @@ const DragonsContainer = () => {
     const [toggleModal, setToggleModal] = useState(false)
     const [cardIndex, setCardIndex] = useState(0)
     
-    const handleSelectedCard = (val:any) => {
+    const handleSelectedCard = (val:number) => {
         setCardIndex(val)
         setToggleModal(true)
     }
 
-    const getSelectedData = (id:any) => {
+    const getSelectedData = (id:number) => {
         const selectedRocket = data.filter((rocket,i) => rocket.id === id)
         return selectedRocket
     }
@@ -41,7 +41,10 @@ const DragonsContainer = () => {
             <div>
                 {
                     toggleModal && (
-                        <DragonModal closeModal={closeModal} data={getSelectedData(cardIndex)}/>
+                        <DragonModal
+                            closeModal={closeModal}
+                            data={getSelectedData(cardIndex)}
+                        />
                     )
                 }
             </div>
