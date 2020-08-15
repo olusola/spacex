@@ -5,7 +5,9 @@ interface Props {
     selectedSpaceType: (param?: any) => void;
 }
 
-const spaceTypes: string[] = ['rockets', 'dragons']
+type SpaceTypes = "rockets" | "dragons"
+
+const spaceTypes: SpaceTypes[] = ['rockets', 'dragons']
 
 const SpacexType: React.FC<Props> = ({selectedSpaceType}) => {
     return (
