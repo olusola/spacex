@@ -2,22 +2,23 @@ import React from 'react'
 import App from './App'
 import { Provider } from 'react-redux'
 import { mount } from 'enzyme'
-import { createStore } from 'redux'
-import rootReducer from './reduxStore/rootReducer'
-import { act } from '@testing-library/react'
+import configureStore from 'redux-mock-store'
+import { mockReducer } from './helper/mocks'
+
+const mockStore = configureStore([])
 
 describe('App Container', () => {
   let wrapper: any
-
-  const store = createStore(rootReducer)
+  let store: any
 
   beforeEach(async () => {
+    store = mockStore(mockReducer)
+
     wrapper = mount(
       <Provider store={store}>
         <App/>
       </Provider>
     )
-    await act(() => new Promise(resolve => setTimeout(resolve, 800)))
   })
 
   it('should render App container with 2 buttons', () => {
@@ -26,9 +27,20 @@ describe('App Container', () => {
   })
 
   it('should render cards when Rocket/Dragon button is selected', () => {
-    wrapper.find('Button').first(0).simulate('click')
+    wrapper.find('Button').first().simulate('click')
     expect(wrapper.find('RocketCard').length).toBe(4)
-    wrapper.find('Button').last(0).simulate('click')
+
+    wrapper.find('Button').last().simulate('click')
     expect(wrapper.find('DragonCard').length).toBe(2)
   })
+
+  it('should render modal when a card is selected', () => {
+    wrapper.find('Button').last().simulate('click')
+    expect(wrapper.find('DragonCard').length).toBe(2)
+    expect(wrapper.find('DragonModal').length).toBe(0)
+
+    wrapper.find('StyledCard').first().simulate('click')
+    expect(wrapper.find('DragonModal').length).toBe(1)
+  })
+
 })

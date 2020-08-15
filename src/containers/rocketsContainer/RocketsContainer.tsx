@@ -9,13 +9,13 @@ const RocketsContainer = () => {
     const [toggleModal, setToggleModal] = useState(false)
     const [cardIndex, setCardIndex] = useState(0)
 
-    const handleSelectedCard = (val:any) => {
+    const handleSelectedCard = (val:number) => {
         setCardIndex(val)
         setToggleModal(true)
     }
 
-    const getSelectedData = (id:any) => {
-        const selectedRocket = data.filter((rocket,i) => rocket.id === id)
+    const getSelectedData = (id:number) => {
+        const selectedRocket = data.filter(rocket => rocket.id === id)
         return selectedRocket
     }
 
@@ -30,9 +30,9 @@ const RocketsContainer = () => {
                     data.map((card,i) => {
                         return (
                             <RocketCard
-                            cardData={card}
-                            selectedCard={handleSelectedCard}
-                            key={i}
+                                cardData={card}
+                                selectedCard={handleSelectedCard}
+                                key={i}
                             />
                         )
                     })
@@ -41,7 +41,10 @@ const RocketsContainer = () => {
             <div>
                 {
                     toggleModal && (
-                        <RocketModal closeModal={closeModal} data={getSelectedData(cardIndex)}/>
+                        <RocketModal 
+                            closeModal={closeModal}
+                            data={getSelectedData(cardIndex)}
+                        />
                     )
                 }
             </div>

@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-type hit = {
-    hits: []
+type data = {
+    data: []
 }
 
 type dataType = {
-    data: hit[],
+    data: data[],
 }
 
 const useFetchData = (URL:string) => {
